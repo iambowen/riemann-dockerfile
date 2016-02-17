@@ -8,5 +8,5 @@ $ docker build -t <tag> .
 
 # Run container with riemann image
 ```
-$ docker run -p 4567:4567 <tag>
+$ docker run -p 4567:4567 -p 5555:5555/tcp -p 5555:5555/udp -p 5556:5556 <tag>
 ```
