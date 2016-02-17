@@ -25,7 +25,7 @@ RUN gem install riemann-client riemann-tools riemann-dash
 
 # Expose ports
 EXPOSE 4567
-EXPOSE 5555
+EXPOSE 5555/tcp
 EXPOSE 5555/udp
 EXPOSE 5556
 

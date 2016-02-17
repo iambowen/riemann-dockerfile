@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# start riemann
-riemann &
-
-# start riemann dashboard
+# start riemann services
+riemann /etc/riemann/riemann.config &
 riemann-dash /etc/riemann/riemann-dash-config.rb
