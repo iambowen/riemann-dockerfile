@@ -32,6 +32,7 @@ EXPOSE 5556
 # Add riemann configuration and script files
 ADD ./config/riemann.config /etc/riemann/riemann.config
 ADD ./config/riemann-dash-config.rb /etc/riemann/riemann-dash-config.rb
+ADD ./config/ws_config.json /etc/riemann/ws_config.json
 ADD ./scripts/start.sh /usr/local/bin/start.sh
 
 # Start services
