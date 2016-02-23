@@ -16,6 +16,47 @@ def random_metric(range)
   rand(range)
 end
 
+def calculate_state(metric)
+  case metric
+    when 1..30 then 'critical'
+    when 31..60 then 'warning'
+    else 'ok'
+  end
+end
+
+def generate_creature_event(c)
+  metric = random_metric(0..100)
+  c << {
+    service: "#{random_creature()} killed",
+    description: 'number of creatures killed',
+    tags: ['creature'],
+    state: calculate_state(metric),
+    metric: metric
+  }
+end
+
+def generate_gun_event(c)
+  metric = random_metric(0..100)
+  c << {
+    service: "#{random_weapon()} ammo total",
+    description: 'total ammo left',
+    tags: ['weapon'],
+    state: calculate_state(metric),
+    metric: metric
+  }
+end
+
+def generate_player_event(c)
+  metric = random_metric(0..100)
+  c << {
+    service: "#{random_player()} health total",
+    description: 'player health',
+    tags: ['player'],
+    state: calculate_state(metric),
+    metric: random_metric(0..100)
+  }
+end
+
 host = `docker-machine ip default`.chop
 port = 5555
 timeout = 5
@@ -23,23 +64,6 @@ timeout = 5
 c = Riemann::Client.new host: host, port: port, timeout: timeout
 
 ### Generate some scary events
-100.times {
-  c << {
-    service: "#{random_creature()} killed",
-    description: 'number of creatures killed',
-    tags: ['creature'],
-    metric: random_metric(0..10)
-  }
-  c << {
-    service: "#{random_weapon()} ammo total",
-    description: 'total ammo left',
-    tags: ['weapon'],
-    metric: random_metric(0..100)
-  }
-  c << {
-    service: "#{random_player()} health total",
-    description: 'player health',
-    tags: ['player'],
-    metric: random_metric(0..100)
-  }
-}
+generate_creature_event(c)
+generate_gun_event(c)
+generate_player_event(c)
