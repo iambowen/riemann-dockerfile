@@ -53,7 +53,7 @@ def generate_player_event(c)
     description: 'player health',
     tags: ['player'],
     state: calculate_state(metric),
-    metric: random_metric(0..100)
+    metric: metric
   }
 end
 
