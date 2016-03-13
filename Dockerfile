@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y wget build-essential ruby ruby-dev zlib
 RUN wget -q http://aphyr.com/riemann/riemann_${RIEMANN_VERSION}_all.deb
 RUN dpkg -i riemann_${RIEMANN_VERSION}_all.deb
 
-# Install Riemman dashboard
+# Install Riemann dashboard
 RUN gem install riemann-client riemann-tools riemann-dash
 
 # Expose ports
