@@ -19,3 +19,11 @@ $ docker-compose up
 ```
 $ watch -n 1 ruby tests/sample_request.rb
 ```
+
+# Email notifications
+To read your email notifications, you can use the maildev's web interface
+available on the port 80 in your docker machine.
+
+```
+$ open "http://$(docker-machine ip default)"
+```
