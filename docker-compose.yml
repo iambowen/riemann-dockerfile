@@ -1,5 +1,10 @@
 version: '2'
 services:
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - "25:25"
+      - "80:80"
   riemann:
     build: .
     ports:
@@ -7,3 +12,5 @@ services:
       - "5555:5555/tcp"
       - "5555:5555/udp"
       - "5556:5556"
+    links:
+      - maildev
