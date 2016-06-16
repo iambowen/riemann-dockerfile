@@ -14,7 +14,7 @@ ENV LC_ALL en_US.UTF-8
 WORKDIR /root
 
 # Install base dependencies
-RUN apt-get update && apt-get install -y wget build-essential ruby ruby-dev zlib1g-dev openjdk-7-jdk
+RUN apt-get update && apt-get install -y wget build-essential ruby ruby-dev zlib1g-dev openjdk-8-jdk
 
 # Install Riemann
 RUN wget -q http://aphyr.com/riemann/riemann_${RIEMANN_VERSION}_all.deb
