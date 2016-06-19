@@ -1,17 +1,15 @@
 # riemann-dockerfile
-Dockerfile to play around with riemann.
+Dockerfile to play around with riemann, influxdb and grafana.
 
-# Build image from Dockerfile
-```
-$ docker build -t <tag> .
-```
+## How to run this?
 
-# Run container with riemann image
+To run this project you will need docker.
+Follow these steps and everything will be up and running!
+
 ```
-$ docker run -p 4567:4567 -p 5555:5555/tcp -p 5555:5555/udp -p 5556:5556 <tag>
-```
-or
-```
+$ docker-machine start
+$ eval $(docker-machine env)
+$ docker-compose build
 $ docker-compose up
 ```
 
@@ -27,3 +25,31 @@ available on the port 80 in your docker machine.
 ```
 $ open "http://$(docker-machine ip default)"
 ```
+
+# InfluxDB
+**Ports:**
+
+* `8083`: InfluxDB Admin Interface
+* `8086`: InfluxDB HTTP API
+
+**Enviroment:**
+
+* `HTTP_USER`: admin
+* `HTTP_PASS`: admin
+* `INFLUXDB_PROTO`: http
+* `INFLUXDB_HOST`: influxdb
+* `INFLUXDB_PORT`: 8086
+* `INFLUXDB_NAME`: metrics_db
+* `INFLUXDB_USER`: riemann
+* `INFLUXDB_PASS`: riemann
+
+# Grafana
+**Ports:**
+
+* `8080`: Grafana Dasboard
+
+**Enviroment:**
+
+* `ADMIN_USER`: riemann
+* `INFLUXDB_INIT_PWD`: riemann
+* `PRE_CREATE_DB`: metrics_db
