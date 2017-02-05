@@ -57,7 +57,8 @@ def generate_player_event(c)
   }
 end
 
-host = `docker-machine ip default`.chop
+#host = `docker-machine ip default`.chop
+host = "127.0.0.1"
 port = 5555
 timeout = 5
 
